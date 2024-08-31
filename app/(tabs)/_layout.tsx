@@ -1,13 +1,25 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Tabs } from "expo-router";
+import { Link, Tabs } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const TabLayout = () => {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        headerRight: (props) => {
+          return (
+            <View className="pr-5">
+              <Link href="/addNewTodo">
+                <FontAwesome5 name="plus" size={20} color={"purple"} />
+              </Link>
+            </View>
+          );
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
