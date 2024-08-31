@@ -26,6 +26,7 @@ const AllTodos = () => {
             return <TodoListItem item={item} />;
           }}
           keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
         />
       )}
     </View>
