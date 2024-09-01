@@ -1,14 +1,10 @@
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import React from "react";
 import Animated, {
-  Extrapolation,
-  FadeIn,
-  FadeInLeft,
   interpolate,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
