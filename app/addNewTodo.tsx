@@ -30,13 +30,17 @@ const AddNewTodo = () => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center bg-purple-100 px-12">
+    <View
+      className="flex-1 justify-center items-center bg-purple-100 px-12"
+      testID="addNewTodo"
+    >
       <View className="bg-purple-200 h-auto w-full p-10 flex-col rounded-md">
         <TextInput
           className="border border-purple-400 rounded-md p-2 w-full mb-5"
           placeholder="Title"
           value={title}
           onChangeText={(text) => setTitle(text)}
+          testID="title"
         />
         <TextInput
           className="border border-purple-400 rounded-md p-2 w-full h-28 mb-5"
@@ -44,8 +48,14 @@ const AddNewTodo = () => {
           multiline={true}
           value={description}
           onChangeText={(text) => setDescription(text)}
+          testID="description"
         />
-        <Button title="Add New Todo" color={"purple"} onPress={handleAddTodo} />
+        <Button
+          title="Add New Todo"
+          testID="addNewTodoButton"
+          color={"purple"}
+          onPress={handleAddTodo}
+        />
       </View>
     </View>
   );
