@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import React from "react";
 import Animated, {
   Extrapolation,
@@ -106,33 +106,42 @@ const TodoListItem: React.FC<TodoListItemProps> = ({ item }) => {
     <Animated.View
       style={[animatedHeight, translateTowStyle]}
       className={cn(`bg-purple-300 rounded-md shadow-lg mb-5 flex-col`)}
+      testID="todoRow"
     >
       <View className="flex-row justify-between px-5">
         <View className="flex-row gap-2 pt-3 ">
           {item.isCompleted && (
-            <Pressable onPress={() => handleUpdateTodo(item)}>
+            <TouchableOpacity
+              onPress={() => handleUpdateTodo(item)}
+              testID="updateButton"
+            >
               <MaterialIcons name="task-alt" size={24} color="purple" />
-            </Pressable>
+            </TouchableOpacity>
           )}
           {!item.isCompleted && (
-            <Pressable onPress={() => handleUpdateTodo(item)}>
+            <TouchableOpacity
+              onPress={() => handleUpdateTodo(item)}
+              testID="updateButton"
+            >
               <Entypo name="circle" size={20} color="purple" />
-            </Pressable>
+            </TouchableOpacity>
           )}
 
-          <Text>{item.title}</Text>
+          <Text testID="todoTitle">{item.title}</Text>
         </View>
         <View className=" flex-row gap-2 pt-3">
-          <Pressable onPress={handleExpand}>
+          <Pressable onPress={handleExpand} testID="expandButton">
             <MaterialIcons name="expand-more" size={24} color="purple" />
           </Pressable>
-          <Pressable onPress={() => handleDelete(item)}>
+          <Pressable onPress={() => handleDelete(item)} testID="deleteButton">
             <MaterialIcons name="delete" size={24} color="purple" />
           </Pressable>
         </View>
       </View>
       <View className="px-5 py-5">
-        <Animated.Text style={animatedText}>{item.description}</Animated.Text>
+        <Animated.Text testID="todoDescription" style={animatedText}>
+          {item.description}
+        </Animated.Text>
       </View>
     </Animated.View>
   );

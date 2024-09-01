@@ -2,8 +2,6 @@ import AddNewTodo from "@/app/addNewTodo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render } from "@testing-library/react-native";
 
-//import AddNewTodo from ';
-
 describe("AddNewTodo", () => {
   test("render withoutError", () => {
     const component = (

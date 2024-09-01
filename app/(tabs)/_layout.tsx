@@ -24,8 +24,12 @@ const TabLayout = () => {
         name="index"
         options={{
           title: "All Todos",
-          tabBarIcon: () => (
-            <FontAwesome5 name="tasks" size={24} color={"purple"} />
+          tabBarIcon: (props) => (
+            <FontAwesome5
+              name="tasks"
+              size={24}
+              color={props.focused ? "purple" : "gray"}
+            />
           ),
           tabBarActiveTintColor: "purple",
         }}
@@ -34,8 +38,12 @@ const TabLayout = () => {
         name="completedTodo"
         options={{
           title: "Completed Todos",
-          tabBarIcon: () => (
-            <MaterialIcons name="task-alt" size={24} color="purple" />
+          tabBarIcon: (props) => (
+            <MaterialIcons
+              name="task-alt"
+              size={24}
+              color={props.focused ? "purple" : "gray"}
+            />
           ),
           tabBarActiveTintColor: "purple",
         }}
@@ -44,8 +52,12 @@ const TabLayout = () => {
         name="deletedTodo"
         options={{
           title: "Deleted Todos",
-          tabBarIcon: () => (
-            <FontAwesome name="tasks" size={24} color={"purple"} />
+          tabBarIcon: (props) => (
+            <FontAwesome
+              name="tasks"
+              size={24}
+              color={props.focused ? "purple" : "gray"}
+            />
           ),
           tabBarActiveTintColor: "purple",
         }}

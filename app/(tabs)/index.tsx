@@ -2,18 +2,13 @@ import {
   View,
   Text,
   FlatList,
-  Pressable,
-  Platform,
   RefreshControl,
   ActivityIndicator,
 } from "react-native";
 import React from "react";
-import Animated from "react-native-reanimated";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchTodos } from "@/service/todo";
 import TodoListItem from "@/components/todoListItem";
-import { TODO } from "@/types/todoType";
 import { FontAwesome } from "@expo/vector-icons";
 
 const AllTodos = () => {
