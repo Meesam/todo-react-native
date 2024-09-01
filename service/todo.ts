@@ -18,6 +18,38 @@ export const fetchTodos = async (): Promise<TODO[]> => {
     console.log(e); 
     return [];
   }
-  
-  
+};
+
+export const fetchCompletedTodos = async (): Promise<TODO[]> => {
+  const url = `${API_BASE_URL}/getAllCompletedTodos`;
+  try{
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: 'Application/json',
+      },
+    })
+    return response.json();
+  }catch(e){
+    console.log(e); 
+    return [];
+  }
+};
+
+export const fetchDeletedTodos = async (): Promise<TODO[]> => {
+  const url = `${API_BASE_URL}/getAllDeletedTodos`;
+  try{
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: 'Application/json',
+      },
+    })
+    return response.json();
+  }catch(e){
+    console.log(e); 
+    return [];
+  }
 };

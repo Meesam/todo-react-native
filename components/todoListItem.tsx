@@ -38,6 +38,7 @@ const TodoListItem: React.FC<TodoListItemProps> = ({ item }) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["completed-todos"] });
     },
   });
 
@@ -47,6 +48,7 @@ const TodoListItem: React.FC<TodoListItemProps> = ({ item }) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["deleted-todos"] });
     },
   });
 
