@@ -10,6 +10,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchTodos } from "@/service/todo";
 import TodoListItem from "@/components/todoListItem";
 import { FontAwesome } from "@expo/vector-icons";
+import Search from "@/components/search";
 
 const AllTodos = () => {
   const queryClient = useQueryClient();
@@ -32,6 +33,10 @@ const AllTodos = () => {
 
   return (
     <View className="flex-1 bg-purple-100 p-5">
+      <View className="mb-5">
+        <Search />
+      </View>
+
       {isLoading && <ActivityIndicator size="large" color="purple" />}
       {isError && (
         <View className="bg-purple-300 rounded-md pb-3 flex-row items-center gap-3">
