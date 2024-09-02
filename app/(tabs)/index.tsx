@@ -48,7 +48,7 @@ const AllTodos = () => {
         <FlatList
           data={todos}
           renderItem={({ item }) => {
-            return <TodoListItem item={item} />;
+            return <TodoListItem item={item} fromDelete={false} />;
           }}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}

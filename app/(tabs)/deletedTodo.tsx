@@ -43,7 +43,7 @@ const DeletedTodos = () => {
         <FlatList
           data={todos}
           renderItem={({ item }) => {
-            return <TodoListItem item={item} />;
+            return <TodoListItem item={item} fromDelete={true} />;
           }}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
