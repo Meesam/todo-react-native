@@ -4,10 +4,14 @@ import { Link, Tabs } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import TabBar from "@/components/tabBar";
 
 const TabLayout = () => {
   return (
     <Tabs
+      tabBar={(props) => {
+        return <TabBar {...props} />;
+      }}
       screenOptions={{
         headerRight: (props) => {
           return (
