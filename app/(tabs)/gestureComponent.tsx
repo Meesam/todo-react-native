@@ -6,10 +6,12 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import Animated, {
+  interpolate,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { FontAwesome } from "@expo/vector-icons";
 
 const GestureComponent = () => {
   const offset = useSharedValue<number>(0);
@@ -30,6 +32,12 @@ const GestureComponent = () => {
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateX: offset.value }],
+    borderRadius: interpolate(
+      offset.value,
+      [0, -10, -12, -15],
+      [0, 0, 5, 15],
+      {}
+    ),
   }));
 
   const handleCancel = () => {
@@ -37,19 +45,19 @@ const GestureComponent = () => {
   };
 
   return (
-    <GestureHandlerRootView className="flex-1 bg-purple-100 pt-5">
+    <GestureHandlerRootView className="flex-1 bg-purple-100 pt-5 relative">
       <View className=" bg-red-500">
         <GestureDetector gesture={pan}>
           <Animated.View
-            className="h-14 w-full bg-purple-400 z-10 absolute"
+            className="h-14 w-full bg-purple-400 z-10"
             style={animatedStyles}
           />
         </GestureDetector>
-        <View className="h-14 w-20 bg-gray-600 rounded-md items-center justify-center relative right-0 z-0">
-          <Pressable onPress={handleCancel}>
-            <Text>Cancel</Text>
-          </Pressable>
-        </View>
+      </View>
+      <View className="h-14 left-[380] bottom-10">
+        <Pressable onPress={handleCancel}>
+          <FontAwesome name="close" size={20} color={"black"} />
+        </Pressable>
       </View>
     </GestureHandlerRootView>
   );

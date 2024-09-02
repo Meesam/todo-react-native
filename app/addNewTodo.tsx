@@ -101,7 +101,7 @@ const AddNewTodo = () => {
               onPress={handleSubmit}
               disabled={!isValid}
             >
-              <Text>Add New Todo</Text>
+              <Text className=" text-lg text-white font-semibold">Add New</Text>
             </TouchableOpacity>
           </View>
         </View>
