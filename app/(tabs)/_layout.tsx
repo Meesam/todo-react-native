@@ -13,6 +13,7 @@ const TabLayout = () => {
         return <TabBar {...props} />;
       }}
       screenOptions={{
+        headerShown: false,
         headerRight: (props) => {
           return (
             <View className="pr-5">

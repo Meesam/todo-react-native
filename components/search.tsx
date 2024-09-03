@@ -18,7 +18,6 @@ const Search = () => {
         onChangeText={handleSearch}
         value={query}
         placeholderTextColor={"purple"}
-        clearButtonMode="always"
       />
       {query != "" && (
         <TouchableOpacity

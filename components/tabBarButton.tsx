@@ -40,9 +40,9 @@ const TabBarButton: React.FC<TabBarButtonProps> = ({
 
   React.useEffect(() => {
     if (isFocused) {
-      width.value = withTiming(96, { duration: 500 });
+      width.value = withTiming(96, { duration: 300 });
     } else {
-      width.value = withTiming(48, { duration: 500 });
+      width.value = withTiming(48, { duration: 300 });
     }
   }, [isFocused]);
 
