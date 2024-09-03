@@ -66,20 +66,6 @@ const TabLayout = () => {
           tabBarActiveTintColor: "purple",
         }}
       />
-      <Tabs.Screen
-        name="gestureComponent"
-        options={{
-          title: "Gesture",
-          tabBarIcon: (props) => (
-            <FontAwesome
-              name="user"
-              size={24}
-              color={props.focused ? "purple" : "gray"}
-            />
-          ),
-          tabBarActiveTintColor: "purple",
-        }}
-      />
     </Tabs>
   );
 };
