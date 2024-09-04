@@ -105,7 +105,9 @@ const TodoListItem: React.FC<TodoListItemProps> = ({ item, fromDelete }) => {
       <GestureDetector gesture={pan}>
         <Animated.View
           style={animatedHeight}
-          className={cn(`bg-purple-300 rounded-md shadow-lg mb-5 flex-col`)}
+          className={cn(
+            `bg-purple-300 rounded-md shadow-lg mb-[0.5] mt-3 mx-5 flex-col`
+          )}
           testID="todoRow"
         >
           <View className="flex-row justify-between px-5">

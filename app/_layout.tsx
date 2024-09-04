@@ -14,7 +14,21 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="addNewTodo" options={{ title: "Add New Todo" }} />
+        <Stack.Screen
+          name="addNewTodo"
+          options={{
+            title: "Add New Todo",
+            headerShadowVisible: false,
+            headerStyle: { backgroundColor: "#e9d5ff" },
+            headerBackTitleStyle: { fontSize: 20 },
+            headerTitleStyle: {
+              fontSize: 20,
+              fontWeight: "700",
+              color: "#9333ea",
+            },
+            headerTintColor: "#9333ea",
+          }}
+        />
       </Stack>
     </QueryClientProvider>
   );

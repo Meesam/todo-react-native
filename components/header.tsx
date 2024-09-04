@@ -5,13 +5,18 @@ import { Link } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Animated from "react-native-reanimated";
 
-const Header = () => {
+interface HeaderProps {
+  animatedHeader: any;
+  title: string;
+}
+const Header: React.FC<HeaderProps> = ({ animatedHeader, title }) => {
   return (
-    <Animated.View className="h-40 bg-purple-200 z-10 w-full items-stretch justify-end">
+    <Animated.View
+      style={animatedHeader}
+      className="bg-purple-200 z-10 w-full items-stretch justify-end pt-5"
+    >
       <View className="p-5">
-        <Text className=" text-xl font-bold text-purple-600 mb-3">
-          All Todo
-        </Text>
+        <Text className=" text-xl font-bold text-purple-600 mb-3">{title}</Text>
         <View className="flex-row items-center justify-between">
           <View className="w-[90%]">
             <Search />

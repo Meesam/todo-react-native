@@ -4,6 +4,8 @@ import {
   FlatList,
   RefreshControl,
   ActivityIndicator,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from "react-native";
 import React from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -13,11 +15,18 @@ import { FontAwesome } from "@expo/vector-icons";
 import Search from "@/components/search";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/header";
-import Animated from "react-native-reanimated";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 const AllTodos = () => {
   const queryClient = useQueryClient();
   const [isRefreshing, setIsRefreshing] = React.useState(false);
+  const translateY = useSharedValue(0);
 
   const {
     data: todos,
@@ -34,36 +43,52 @@ const AllTodos = () => {
     setIsRefreshing(false);
   };
 
+  const animatedHeader = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: -translateY.value }],
+      opacity: interpolate(translateY.value, [0, 44], [1, 0], {
+        extrapolateLeft: Extrapolation.CLAMP,
+      }),
+    };
+  });
+
+  const handleOnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    translateY.value = withTiming(event.nativeEvent.contentOffset.y, {
+      duration: 200,
+    });
+  };
+
   return (
     <View className="bg-purple-100 flex-1">
-      <Header />
-      <Animated.ScrollView>
-        <View className=" bg-purple-100 p-5">
-          {isLoading && <ActivityIndicator size="large" color="purple" />}
-          {isError && (
-            <View className="bg-purple-300 rounded-md pb-3 flex-row items-center gap-3">
-              <FontAwesome name="minus-circle" size={24} color={"purple"} />
-              <Text>Couldn't fetch todos!!</Text>
-            </View>
-          )}
-          {todos && todos.length > 0 && (
-            <FlatList
-              data={todos}
-              renderItem={({ item }) => {
-                return <TodoListItem item={item} fromDelete={false} />;
-              }}
-              keyExtractor={(item) => item.id.toString()}
-              showsVerticalScrollIndicator={false}
-              refreshControl={
-                <RefreshControl
-                  refreshing={isRefreshing}
-                  onRefresh={handleOnRefresh}
-                />
-              }
-            />
-          )}
-        </View>
-      </Animated.ScrollView>
+      <View className=" bg-purple-100">
+        {isLoading && <ActivityIndicator size="large" color="purple" />}
+        {isError && (
+          <View className="bg-purple-300 rounded-md pb-3 flex-row items-center gap-3">
+            <FontAwesome name="minus-circle" size={24} color={"purple"} />
+            <Text>Couldn't fetch todos!!</Text>
+          </View>
+        )}
+        {todos && todos.length > 0 && (
+          <FlatList
+            onScroll={handleOnScroll}
+            data={todos}
+            renderItem={({ item }) => (
+              <TodoListItem item={item} fromDelete={false} />
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            showsVerticalScrollIndicator={false}
+            refreshControl={
+              <RefreshControl
+                refreshing={isRefreshing}
+                onRefresh={handleOnRefresh}
+              />
+            }
+            ListHeaderComponent={() => (
+              <Header animatedHeader={animatedHeader} title="All Todos" />
+            )}
+          />
+        )}
+      </View>
     </View>
   );
 };
